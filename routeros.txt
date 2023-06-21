@@ -1,0 +1,9 @@
+/interface bridge add name=lobridge
+/ip address add address=10.16.0.180/24 interface=ether2
+/ip address add address=10.1.1.1/32 interface=lobridge
+/ip address add address=192.168.21.1/24 interface=ether3
+/interface bridge port
+add bridge=lobridge interface=ether2
+add bridge=lobridge interface=ether3
+/routing bgp connection
+add address-families=ip as=64512 disabled=no local.address=10.16.0.180 role=ibgp name=bgp1 output.redistribute=connected,static remote.address=10.16.0.0/24 as=64512 router-id=10.1.1.1 routing-table=main

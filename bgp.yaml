@@ -1,0 +1,24 @@
+apiVersion:  core.contrail.juniper.net/v1alpha1
+kind: BGPRouter
+metadata:
+  namespace: contrail
+  name: bgprouter
+spec:
+  parent:
+    apiVersion: core.contrail.juniper.net/v1
+    kind:       RoutingInstance
+    name:       default
+    namespace:  contrail
+  bgpRouterParameters:
+    vendor: Juniper
+    routerType: router
+    address:  10.16.0.180
+    identifier: 10.1.1.1
+    holdTime: 60
+    addressFamilies:
+      family:
+        - inet
+        - inet-vpn
+        - route-target
+        - inet6-vpn
+    autonomousSystem:  64512
